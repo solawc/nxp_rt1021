@@ -16,8 +16,7 @@
       "maximum_size": 8388608,
       "protocol": "jlink",
       "protocols": [
-        "jlink",
-        "cmsis-dap"
+        "jlink"
       ]
     },
     "url": "https://www.nxp.com/part/MIMXRT1021DAG5A#/",
