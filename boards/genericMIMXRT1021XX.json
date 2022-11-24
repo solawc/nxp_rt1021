@@ -1,0 +1,26 @@
+{
+    "build": {
+      "mcu": "mimxrt1021xx",
+      "cpu": "cortex-m7",
+      "extra_flags":"-DCPU_MIMXRT1021DAG5A"
+    },
+    "debug": {
+      "jlink_device": "MIMXRT1021XX5A"
+    },
+    "frameworks": [
+      "cmsis"
+    ],
+    "name": "MIMXRT1021XX5A (256k RAM. 8912k Flash)",
+    "upload": {
+      "maximum_ram_size": 262144,
+      "maximum_size": 8388608,
+      "protocol": "jlink",
+      "protocols": [
+        "jlink",
+        "cmsis-dap"
+      ]
+    },
+    "url": "https://www.nxp.com/part/MIMXRT1021DAG5A#/",
+    "vendor": "Generic"
+  }
+  
