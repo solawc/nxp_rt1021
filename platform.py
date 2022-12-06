@@ -87,8 +87,42 @@ class MynxpPlatform(PlatformBase):
                             "-port", "2331"
                         ],
                         "executable": ("JLinkGDBServerCL.exe" if system() == "Windows" else "JLinkGDBServer")
-                    }
+                    },
+                    "onboard": link in debug.get("onboard_tools", [])
                 }
+            elif link == "cmsis-dap":
+                if debug.get("pyocd_target"):
+                    pyocd_target = debug.get("pyocd_target")
+                    assert pyocd_target
+                    debug["tools"][link] = {
+                        "onboard": True,
+                        "server": {
+                            "package": "tool-pyocd",
+                            "executable": "$PYTHONEXE",
+                            "arguments": [
+                                "pyocd-gdbserver.py",
+                                "-t",
+                                pyocd_target
+                            ],
+                            "ready_pattern": "GDB server started on port"
+                        }
+                    }
+                else:
+                    openocd_target = debug.get("openocd_target")
+                    assert openocd_target
+                    debug["tools"][link] = {
+                        "load_cmd": "preload",
+                        "onboard": True,
+                        "server": {
+                            "executable": "bin/openocd",
+                            "package": "tool-openocd",
+                            "arguments": [
+                                "-s", "$PACKAGE_DIR/scripts",
+                                "-f", "interface/cmsis-dap.cfg",
+                                "-f", "target/%s.cfg" % openocd_target
+                            ]
+                        }
+                    }
             else:
                 pass
 

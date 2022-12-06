@@ -29,7 +29,7 @@
     },
     "tool-jlink": {
       "type": "uploader",
-      "version": "^1.63208.0"
+      "version": "^1.77001.0"
     }
   }
 }
